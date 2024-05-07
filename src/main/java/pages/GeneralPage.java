@@ -3,22 +3,18 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class GeneralPage {
     private final Page page;
     private final Locator I_ACCEPT_COOKIES_BUTTON;
     private final Locator LOCATION_BAR_CLOSE_BUTTON;
-//    private final Locator PASSWORD_EDITBOX;
-//    private final Locator LOGIN_BUTTON;
-//    private final Locator BOOKS_SEARCH_BOX;
+
 
     public GeneralPage(Page page) {
         this.page = page;
         this.I_ACCEPT_COOKIES_BUTTON = page.getByText("I accept cookies");
         this.LOCATION_BAR_CLOSE_BUTTON = page.locator("geo-location-close");
-//        this.USERNAME_EDITBOX = page.locator("#userName");
-//        this.PASSWORD_EDITBOX = page.locator("#password");
-//        this.LOGIN_BUTTON = page.locator("#login");
-//        this.BOOKS_SEARCH_BOX = page.getByPlaceholder("Type to search");
     }
 
     public void navigateToUrl(String url) {
@@ -40,6 +36,10 @@ public class GeneralPage {
 
     public void clickOnItemByLocator(String itemLocator) {
         page.locator(itemLocator).click();
+    }
+
+    public void checkColour(String itemLocator, String colour) {
+        assertThat(page.locator(itemLocator)).hasCSS("background-color", colour);
     }
 //
 //    public void enterPassword(String password) {

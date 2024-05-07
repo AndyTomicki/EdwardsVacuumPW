@@ -34,9 +34,9 @@ public class GeneralSteps {
         generalPage.clickOnItemByLocator(itemLocator);
     }
 
-    @Given("user sets the device as {string}")
-    public void userSetsTheDeviceAs(String device) {
-        System.setProperty("device", device);
+    @And("verify that colour of {string} element is {string}")
+    public void checksColourOfElement(String element, String colour) {
+        generalPage.checkColour(element, colour);
     }
 
 

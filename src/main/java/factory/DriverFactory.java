@@ -4,7 +4,7 @@ import com.microsoft.playwright.*;
 import utils.WebActions;
 
 public class DriverFactory {
-    public Browser browser;
+    public static Browser browser;
     public static BrowserContext context;
     public static Page page;
 
