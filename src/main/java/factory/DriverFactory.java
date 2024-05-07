@@ -14,7 +14,7 @@ public class DriverFactory {
     //Launches Browser as set by user in config file
     public Page initDriver(String browserName) {
         BrowserType browserType = null;
-        boolean headless = Boolean.valueOf(WebActions.getProperty("headless"));
+        boolean headless = Boolean.parseBoolean(WebActions.getProperty("headless"));
         switch (browserName) {
             case "firefox":
                 browserType = Playwright.create().firefox();
@@ -29,8 +29,34 @@ public class DriverFactory {
                 browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(headless));
                 break;
         }
+
+        switch (System.getProperty("device")) {
+            default: //Windows
+                context = browser.newContext(new Browser.NewContextOptions()
+                        .setDeviceScaleFactor(1)
+                        .setIsMobile(false)
+                        .setHasTouch(false)
+                        .setScreenSize(1920, 1080)
+                        .setViewportSize(1920, 1080)
+                );
+                break;
+            case "Pixel5":
+                context = browser.newContext(new Browser.NewContextOptions()
+//                        .setLocale("de-DE")
+//                        .setTimezoneId("Europe/Berlin")
+                        .setDeviceScaleFactor(2.75)
+                        .setIsMobile(true)
+                        .setHasTouch(true)
+                        .setScreenSize(393, 851)
+                        .setViewportSize(393, 727)
+                        .setUserAgent("Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.26 Mobile Safari/537.36")
+                );
+                break;
+
+        }
+
         if (browserType == null) throw new IllegalArgumentException("Could not Launch Browser for type" + browserType);
-        context = browser.newContext();
+
         //Below line is used to start the trace file
         context.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true).setSources(false));
         page = context.newPage();

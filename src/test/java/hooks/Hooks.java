@@ -15,8 +15,14 @@ public class Hooks {
     public Page page;
 
     @Before
-    public void launchBrowser() {
+    public void launchBrowser(Scenario scenario) {
         String browserName = WebActions.getProperty("browser");  //Fetching browser value from config file
+        String device = "Windows"; // default device
+        String tags = scenario.getSourceTagNames().toString();
+        if (tags.contains("@Device=")) {
+            device = tags.substring(tags.indexOf("@Device=")+8, tags.indexOf("]"));
+            System.setProperty("device", device);
+        }
         driverFactory = new DriverFactory();
         page = driverFactory.initDriver(browserName); // Passing browser name to launch the browser
     }

@@ -34,6 +34,11 @@ public class GeneralSteps {
         generalPage.clickOnItemByLocator(itemLocator);
     }
 
+    @Given("user sets the device as {string}")
+    public void userSetsTheDeviceAs(String device) {
+        System.setProperty("device", device);
+    }
+
 
 //    @When("^user enters \"([^\"]*)\" username$")
 //    public void enterUsername(String username) {

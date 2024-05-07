@@ -2,10 +2,9 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import utils.WebActions;
 
 public class GeneralPage {
-    private Page page;
+    private final Page page;
     private final Locator I_ACCEPT_COOKIES_BUTTON;
     private final Locator LOCATION_BAR_CLOSE_BUTTON;
 //    private final Locator PASSWORD_EDITBOX;
@@ -23,8 +22,8 @@ public class GeneralPage {
     }
 
     public void navigateToUrl(String url) {
+       // this.page.setViewportSize(1920, 1080);
         this.page.navigate(url);
-        this.page.setViewportSize(1920, 1080);
     }
 
     public void clickOnIAcceptCookies() {
