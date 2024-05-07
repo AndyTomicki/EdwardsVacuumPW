@@ -25,9 +25,15 @@ public class GeneralSteps {
     }
 
     @And("^user clicks on element with text \"([^\"]*)\"$")
-    public void clicksOnButtonElementItem(String itemText) {
+    public void clicksOnButtonElementItemWithText(String itemText) {
         generalPage.clickOnItemWithText(itemText);
     }
+
+    @And("^user clicks on element by locator \"([^\"]*)\"$")
+    public void clicksOnButtonElementByLocator(String itemLocator) {
+        generalPage.clickOnItemByLocator(itemLocator);
+    }
+
 
 //    @When("^user enters \"([^\"]*)\" username$")
 //    public void enterUsername(String username) {

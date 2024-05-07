@@ -36,8 +36,11 @@ public class GeneralPage {
     }
 
     public void clickOnItemWithText(String itemText) {
-        Locator element = page.getByText(itemText);
-        element.click();
+        page.getByText(itemText).click();
+    }
+
+    public void clickOnItemByLocator(String itemLocator) {
+        page.locator(itemLocator).click();
     }
 //
 //    public void enterPassword(String password) {

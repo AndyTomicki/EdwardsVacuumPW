@@ -5,5 +5,5 @@ Feature: Verify the functionalities of Video Playlist page
     Given user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     When user accepts cookies
     #And closes location bar
-    Then user clicks on element with text "EXPLORE"
-    Then user clicks on element with text "//button[@id='azZ4Gi8Ysd5D3oiM']"
+    Then user clicks on element with text "MENU"
+    #Then user clicks on element by locator "xpath=//nav[@class='mobile-v2-nav']//button[@class='cmp-header__explore-btn cmp-header__toggle-btn open']//span[.='Close']"
