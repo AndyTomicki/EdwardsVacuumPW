@@ -2,7 +2,7 @@
 Feature: Verify the functionalities of Video Playlist page
 
   @Device:Windows @Current
-  Scenario: Verify User is able to perform actions on Web Elements in Video Playlist page
+  Scenario: Verify colour of SEMICONDUCTOR menu item
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
     Then user clicks on element by locator "//span[.='Semiconductor']"
