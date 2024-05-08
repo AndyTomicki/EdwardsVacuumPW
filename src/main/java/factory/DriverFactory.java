@@ -42,8 +42,6 @@ public class DriverFactory {
                 break;
             case "Pixel5":
                 context = browser.newContext(new Browser.NewContextOptions()
-//                        .setLocale("de-DE")
-//                        .setTimezoneId("Europe/Berlin")
                         .setDeviceScaleFactor(2.75)
                         .setIsMobile(true)
                         .setHasTouch(true)
@@ -52,7 +50,15 @@ public class DriverFactory {
                         .setUserAgent("Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.26 Mobile Safari/537.36")
                 );
                 break;
-
+            case "iPadPro11":
+                context = browser.newContext(new Browser.NewContextOptions()
+                        .setDeviceScaleFactor(2)
+                        .setIsMobile(true)
+                        .setHasTouch(true)
+                        .setViewportSize(834, 1194)
+                        .setUserAgent("Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                );
+                break;
         }
 
         if (browserType == null) throw new IllegalArgumentException("Could not Launch Browser for type" + browserType);

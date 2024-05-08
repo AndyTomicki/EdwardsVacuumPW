@@ -44,7 +44,7 @@ public class Hooks {
     @After(order = 1)
     public void takeScreenshotAndTrace(Scenario scenario) {
         if (scenario.isFailed()) {
-            String screenshotName = scenario.getName().replaceAll("", "_"); //Replace all space in scenario name with underscore
+            String screenshotName = scenario.getName().replaceAll(" ", "_"); //Replace all space in scenario name with underscore
             byte[] sourcePath = page.screenshot();
             scenario.attach(sourcePath, "image/png", screenshotName);  //Attach screenshot to report if scenario fails
             DriverFactory.context.tracing().stop(new Tracing.StopOptions().setPath(Paths.get("target/" + screenshotName + ".zip")));

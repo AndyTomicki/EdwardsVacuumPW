@@ -1,7 +1,7 @@
 
 Feature: Verify the functionalities of Video Playlist page
 
-  @Device:Windows @Current
+  @Device:iPadPro11 @Current
   Scenario: Verify colour of SEMICONDUCTOR menu item
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
