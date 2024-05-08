@@ -2,7 +2,25 @@ This readme.md is still under construction
 # Edwards Vacuum Regression Suite
 
 
+## Running Tests
 
+To run tests, run the following command
+
+```bash
+  mvn test
+```
+
+To run certain scenario/set of scenarios use `Tag`
+
+```cucumber
+  @Device:iPadPro11 @Current
+  Scenario: Verify colour of SEMICONDUCTOR menu item
+    When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
+```
+
+```bash
+  mvn test -Dcucumber.filter.tags=@Current
+```
 
 ## Available emulated devices:
 
@@ -40,22 +58,3 @@ Example:
 
 
 
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  mvn test
-```
-
-To run certain scenario/set of scenarios use `Tag`
-
-```cucumber
-  @Device:iPadPro11 @Current
-  Scenario: Verify colour of SEMICONDUCTOR menu item
-    When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
-```
-
-```bash
-  mvn test -Dcucumber.filter.tags=@Current
-```
