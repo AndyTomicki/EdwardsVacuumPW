@@ -10,11 +10,13 @@ Feature: 03 Header compacting
     And bottom part of the header is visible
     When user scrolls down by 1500 pixels
     Then top part of the header is not visible
+    And bottom part of the header is visible
 
 
-  @Device:Pixel5 @Current
+  @Device:Pixel5
   Scenario: Header compacting
     Given top part of the header is visible
     And bottom part of the header is visible
     When user scrolls down by 1500 pixels
     Then top part of the header is visible
+    And bottom part of the header is not visible
