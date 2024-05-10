@@ -4,7 +4,7 @@ Feature: 02 Clicking on the menus
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Windows @Current
+  @Device:Windows
   Scenario: Menu closes when needed
     Given main menu is not visible
     And location menu is not visible

@@ -14,6 +14,10 @@ public class DesktopPage {
     private final Locator MAIN_MENU_BUTTON;
     private final Locator LOCATION_MENU_BUTTON;
     public final Locator SEARCH_INPUT;
+    public final Locator HEADER;
+    public final Locator HEADER_SCROLLED;
+    public final Locator TOP_HEADER;
+    public final Locator BOTTOM_HEADER;
 
 
     public DesktopPage(Page page) {
@@ -26,6 +30,10 @@ public class DesktopPage {
         this.MAIN_MENU_BUTTON = page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn main-menu']");
         this.LOCATION_MENU_BUTTON = VISIBLE.and(page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn']")).first();
         this.SEARCH_INPUT = page.locator("//div[@class='cmp-header__search-container']");
+        this.HEADER = page.locator("//header[@class='cmp-header-twentytwentyfour']");
+        this.HEADER_SCROLLED = page.locator("//header[@class='cmp-header-twentytwentyfour cmp-header-twentytwentyfour--scrolled']");
+        this.TOP_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__top']");
+        this.BOTTOM_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__bottom']");
     }
 
     public void navigateToUrl(String url) {

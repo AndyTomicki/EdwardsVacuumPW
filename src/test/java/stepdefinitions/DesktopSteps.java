@@ -7,6 +7,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.DesktopPage;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static factory.DriverFactory.page;
+
 public class DesktopSteps {
     DesktopPage desktopPage = new DesktopPage(DriverFactory.getPage());
 
@@ -83,6 +86,35 @@ public class DesktopSteps {
     @And("user clicks on Search Input Field")
     public void userClicksOnSearchInputField() {
         desktopPage.SEARCH_INPUT.click();
+    }
+
+    @Given("top part of the header is visible")
+    public void userCanSeeTopPartOfTheHeader() {
+        page.waitForTimeout(300);
+        assertThat(desktopPage.TOP_HEADER).isInViewport();
+    }
+
+    @And("bottom part of the header is visible")
+    public void bottomPartOfTheHeaderIsVisible() {
+        page.waitForTimeout(300);
+        assertThat(desktopPage.BOTTOM_HEADER).isInViewport();
+    }
+
+    @Given("top part of the header is not visible")
+    public void userCantSeeTopPartOfTheHeader() {
+        page.waitForTimeout(300);
+        assertThat(desktopPage.TOP_HEADER).not().isInViewport();
+    }
+
+    @And("bottom part of the header is not visible")
+    public void bottomPartOfTheHeaderIsNotVisible() {
+        page.waitForTimeout(300);
+        assertThat(desktopPage.BOTTOM_HEADER).not().isInViewport();
+    }
+
+    @Then("user scrolls down by {int} pixels")
+    public void userScrollsDownByPixels(int deltaY) {
+        page.mouse().wheel(0, deltaY);
     }
 
 
