@@ -3,6 +3,7 @@ package stepdefinitions;
 import factory.DriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.GeneralPage;
 
@@ -34,9 +35,34 @@ public class GeneralSteps {
         generalPage.clickOnItemByLocator(itemLocator);
     }
 
-    @And("verify that colour of {string} element is {string}")
+    @And("user clicks on {string} quick links menu item")
+    public void clickOnQuickLinksMenuWithText(String itemText) {
+        generalPage.clickOnQuickLinksMenuWithText(itemText);
+    }
+
+    @And("user clicks on {string} main menu sub item")
+    public void clickOnMainMenuSubItem(String itemText) {
+        generalPage.clickOnMainMenuSubItem(itemText);
+    }
+
+    @And("user clicks on the main menu")
+    public void clickOnQuickLinksMenuWithText() {
+        generalPage.expandMainMenu();
+    }
+
+    @And("verify that background colour of {string} element is {string}")
     public void checksColourOfElement(String element, String colour) {
         generalPage.checkColour(element, colour);
+    }
+
+    @Then("verify that colour of {string} main menu sub item is {string}")
+    public void checksColourOfSubMenu(String element, String colour) {
+        generalPage.checkColourSubMenuItem(element, colour);
+    }
+
+    @Then("user expands main menu")
+    public void userExpandsMainMenu() {
+        generalPage.expandMainMenu();
     }
 
 
