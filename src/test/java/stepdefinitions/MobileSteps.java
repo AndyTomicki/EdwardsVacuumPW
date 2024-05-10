@@ -8,7 +8,7 @@ public class MobileSteps {
     MobilePage mobilePage = new MobilePage(DriverFactory.getPage());
 
     @And("user clicks on the main menu on mobile")
-    public void clickOnQuickLinksMenuWithText() {
+    public void clickOnMainMenu() {
         mobilePage.expandMainMenu();
     }
 }

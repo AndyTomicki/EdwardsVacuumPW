@@ -46,8 +46,13 @@ public class DesktopSteps {
     }
 
     @And("user clicks on the main menu")
-    public void clickOnQuickLinksMenuWithText() {
+    public void clickOnMainMenu() {
         desktopPage.expandMainMenu();
+    }
+
+    @And("user clicks on the location menu")
+    public void clickOnLocationMenu() {
+        desktopPage.expandLocationMenu();
     }
 
     @And("verify that background colour of {string} element is {string}")
@@ -63,6 +68,21 @@ public class DesktopSteps {
     @Then("user expands main menu")
     public void userExpandsMainMenu() {
         desktopPage.expandMainMenu();
+    }
+
+    @Then("main menu is not visible")
+    public void mainMenuIsNotVisible() {
+        desktopPage.mainMenuIsNotVisible();
+    }
+
+    @Then("location menu is not visible")
+    public void locationMenuIsNotVisible() {
+        desktopPage.locationMenuIsNotVisible();
+    }
+
+    @And("user clicks on Search Input Field")
+    public void userClicksOnSearchInputField() {
+        desktopPage.SEARCH_INPUT.click();
     }
 
 

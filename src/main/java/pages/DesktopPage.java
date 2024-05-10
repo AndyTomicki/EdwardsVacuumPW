@@ -12,23 +12,26 @@ public class DesktopPage {
     private final Locator COOKIES_MODAL;
     private final Locator LOCATION_BAR_CLOSE_BUTTON;
     private final Locator MAIN_MENU_BUTTON;
-    private final Locator MOBILE_MAIN_MENU_BUTTON;
+    private final Locator LOCATION_MENU_BUTTON;
+    public final Locator SEARCH_INPUT;
 
 
     public DesktopPage(Page page) {
         this.page = page;
+        Locator VISIBLE = page.locator("*:visible");
+        this.QUICKLINKS_MENU_ITEM = page.locator("//span[@class='cmp-header-twentytwentyfour__quicklinks-item__link__text']");
         this.I_ACCEPT_COOKIES_BUTTON = page.getByText("I accept cookies");
         this.COOKIES_MODAL = page.locator("//div[@aria-label='This website uses cookies']");
         this.LOCATION_BAR_CLOSE_BUTTON = page.locator("geo-location-close");
         this.MAIN_MENU_BUTTON = page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn main-menu']");
-        this.MOBILE_MAIN_MENU_BUTTON = page.locator("//div[@class='cmp-header-twentytwentyfour__mobile-navigation cmp-header-twentytwentyfour__toggle cmp-header-twentytwentyfour__toggle--close']");
-        this.QUICKLINKS_MENU_ITEM = page.locator("//span[@class='cmp-header-twentytwentyfour__quicklinks-item__link__text']");
+        this.LOCATION_MENU_BUTTON = VISIBLE.and(page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn']")).first();
+        this.SEARCH_INPUT = page.locator("//div[@class='cmp-header__search-container']");
     }
 
     public void navigateToUrl(String url) {
         this.page.navigate(url);
         //always accept cookies whenever cookie popup appears
-     //   page.addLocatorHandler(COOKIES_MODAL, I_ACCEPT_COOKIES_BUTTON::click);
+        //   page.addLocatorHandler(COOKIES_MODAL, I_ACCEPT_COOKIES_BUTTON::click);
     }
 
     public void clickOnIAcceptCookies() {
@@ -37,6 +40,10 @@ public class DesktopPage {
 
     public void expandMainMenu() {
         MAIN_MENU_BUTTON.click();
+    }
+
+    public void expandLocationMenu() {
+        LOCATION_MENU_BUTTON.click();
     }
 
     public void closeLocationBar() {
@@ -52,9 +59,9 @@ public class DesktopPage {
     }
 
     public void clickOnMainMenuSubItem(String itemText) {
-        page.waitForTimeout(450);
-        page.locator("p:visible").and(page.locator("//p[.='"+itemText+"']")).first().waitFor(new Locator.WaitForOptions().setTimeout(1000));
-        page.locator("p:visible").and(page.locator("//p[.='"+itemText+"']")).first().click();
+        page.waitForTimeout(300);
+        page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).first().waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).first().click();
     }
 
     public void clickOnItemByLocator(String itemLocator) {
@@ -68,6 +75,20 @@ public class DesktopPage {
     }
 
     public void checkColourSubMenuItem(String itemText, String colour) {
-        assertThat(page.locator("p:visible").and(page.locator("//p[.='"+itemText+"']")).first().getByText(itemText, new Locator.GetByTextOptions().setExact(true))).hasCSS("color", colour);
+        assertThat(page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).first().getByText(itemText, new Locator.GetByTextOptions().setExact(true))).hasCSS("color", colour);
+    }
+
+    public void mainMenuIsNotVisible() {
+        Locator menuItem = page.locator("//ul[@class='cmp-header-twentytwentyfour__list__items__nested']/../..//li[@class='cmp-header-twentytwentyfour__list__item ']");
+        for (int i = 0; i < menuItem.count(); i++) {
+            assertThat(menuItem.nth(i)).isHidden();
+        }
+    }
+
+    public void locationMenuIsNotVisible() {
+        Locator menuItem = page.locator("//ul[@class='cmp-header-twentytwentyfour__list__items']").getByText("Brasil");
+        for (int i = 0; i < menuItem.count(); i++) {
+            assertThat(menuItem.nth(i)).isHidden();
+        }
     }
 }

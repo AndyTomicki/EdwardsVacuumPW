@@ -15,7 +15,6 @@ public class MobilePage {
     }
 
     public void expandMainMenu() {
-        page.waitForTimeout(750);
         MOBILE_MAIN_MENU_BUTTON.click();
     }
 }

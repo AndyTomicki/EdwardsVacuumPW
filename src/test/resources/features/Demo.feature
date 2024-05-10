@@ -23,7 +23,7 @@ Feature: Just a demo of the framework
     Then user clicks on "Carbon Capture, Utilisation and Storage" main menu sub item
 
 
-  @Device:Pixel5 @Current
+  @Device:Pixel5
   Scenario: Click around on Pixel5
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
@@ -34,6 +34,6 @@ Feature: Just a demo of the framework
     Then user clicks on "Our Markets" main menu sub item
     Then user clicks on "Carbon Capture, Utilisation and Storage" main menu sub item
     And user clicks on the main menu on mobile
-    And user clicks on "Back" main menu sub item
-    And user clicks on "Back" main menu sub item
+
+
     
