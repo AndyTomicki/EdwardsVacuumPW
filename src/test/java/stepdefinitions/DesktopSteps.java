@@ -1,6 +1,5 @@
 package stepdefinitions;
 
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import factory.DriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -121,13 +120,13 @@ public class DesktopSteps {
 
     @Given("top part of the header is not visible")
     public void userCantSeeTopPartOfTheHeader() {
-        page.waitForTimeout(300);
+        page.waitForTimeout(330);
         assertThat(desktopPage.TOP_HEADER).not().isInViewport();
     }
 
     @And("bottom part of the header is not visible")
     public void bottomPartOfTheHeaderIsNotVisible() {
-        page.waitForTimeout(300);
+        page.waitForTimeout(330);
         assertThat(desktopPage.BOTTOM_HEADER).not().isInViewport();
     }
 
@@ -159,5 +158,15 @@ public class DesktopSteps {
     @And("Favicon Edwards Logo is not visible")
     public void faviconEdwardsLogoIsNotVisible() {
         assertThat(desktopPage.FAVICON_EDWARDS_LOGO).not().isInViewport();
+    }
+
+    @And("Market Picker is visible")
+    public void marketPickerIsVisible() {
+        assertThat(desktopPage.MARKET_PICKER).isInViewport();
+    }
+
+    @Given("user refreshes the page")
+    public void userRefreshesThePage() {
+        page.reload();
     }
 }

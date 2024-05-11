@@ -9,7 +9,7 @@ public class DesktopPage {
     private final Page page;
     private final Locator QUICKLINKS_MENU_ITEM;
     private final Locator I_ACCEPT_COOKIES_BUTTON;
-    private final Locator COOKIES_MODAL;
+   // private final Locator COOKIES_MODAL;
     private final Locator LOCATION_BAR_CLOSE_BUTTON;
     private final Locator MAIN_MENU_BUTTON;
     private final Locator LOCATION_MENU_BUTTON;
@@ -20,8 +20,7 @@ public class DesktopPage {
     public final Locator BOTTOM_HEADER;
     public final Locator EDWARDS_LOGO;
     public final Locator FAVICON_EDWARDS_LOGO;
-
-
+    public final Locator MARKET_PICKER;
 
 
     public DesktopPage(Page page) {
@@ -29,7 +28,7 @@ public class DesktopPage {
         Locator VISIBLE = page.locator("*:visible");
         this.QUICKLINKS_MENU_ITEM = page.locator("//span[@class='cmp-header-twentytwentyfour__quicklinks-item__link__text']");
         this.I_ACCEPT_COOKIES_BUTTON = page.getByText("I accept cookies");
-        this.COOKIES_MODAL = page.locator("//div[@aria-label='This website uses cookies']");
+   //     this.COOKIES_MODAL = page.locator("//div[@aria-label='This website uses cookies']");
         this.LOCATION_BAR_CLOSE_BUTTON = page.locator("geo-location-close");
         this.MAIN_MENU_BUTTON = page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn main-menu']");
         this.LOCATION_MENU_BUTTON = VISIBLE.and(page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn']")).first();
@@ -40,6 +39,8 @@ public class DesktopPage {
         this.BOTTOM_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__bottom']");
         this.EDWARDS_LOGO = page.locator("//div[@class='edwards-logo']").first();
         this.FAVICON_EDWARDS_LOGO = page.locator("//div[@class='cmp-header-twentytwentyfour__favicon']");
+        this.MARKET_PICKER = page.locator("//div[@class='cmp-market-picker-prompt']");
+
     }
 
     public void navigateToUrl(String url) {

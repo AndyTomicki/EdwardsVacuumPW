@@ -4,7 +4,7 @@ Feature: 03 Header compacting
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Windows @Current
+  @Device:Windows
   Scenario: Header compacting
     - rgb(45, 54, 58) - --grey: #2d363a; - darker grey
     - rgb(87, 94, 97) - #575e61 - light grey
