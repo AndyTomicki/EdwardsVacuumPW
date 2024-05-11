@@ -18,6 +18,10 @@ public class DesktopPage {
     public final Locator HEADER_SCROLLED;
     public final Locator TOP_HEADER;
     public final Locator BOTTOM_HEADER;
+    public final Locator EDWARDS_LOGO;
+    public final Locator FAVICON_EDWARDS_LOGO;
+
+
 
 
     public DesktopPage(Page page) {
@@ -34,6 +38,8 @@ public class DesktopPage {
         this.HEADER_SCROLLED = page.locator("//header[@class='cmp-header-twentytwentyfour cmp-header-twentytwentyfour--scrolled']");
         this.TOP_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__top']");
         this.BOTTOM_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__bottom']");
+        this.EDWARDS_LOGO = page.locator("//div[@class='edwards-logo']").first();
+        this.FAVICON_EDWARDS_LOGO = page.locator("//div[@class='cmp-header-twentytwentyfour__favicon']");
     }
 
     public void navigateToUrl(String url) {
@@ -73,13 +79,17 @@ public class DesktopPage {
     }
 
     public void clickOnItemByLocator(String itemLocator) {
-        System.out.println("COOKIES -------------------------------------------------");
-        System.out.println(page.context().cookies().get(1).name);
+//        System.out.println("COOKIES -------------------------------------------------");
+//        System.out.println(page.context().cookies().get(1).name);
         page.locator(itemLocator).click();
     }
 
     public void checkColour(String itemLocator, String colour) {
         assertThat(page.locator(itemLocator)).hasCSS("background-color", colour);
+    }
+
+    public void checkColourOfHeader(String colour) {
+        assertThat(BOTTOM_HEADER).hasCSS("background-color", colour);
     }
 
     public void checkColourSubMenuItem(String itemText, String colour) {

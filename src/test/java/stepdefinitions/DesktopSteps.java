@@ -1,10 +1,12 @@
 package stepdefinitions;
 
+import com.microsoft.playwright.assertions.LocatorAssertions;
 import factory.DriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.DesktopPage;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -63,6 +65,12 @@ public class DesktopSteps {
         desktopPage.checkColour(element, colour);
     }
 
+    @And("verify that background colour of Header is {string}")
+    public void checksColourOfHeader(String colour) {
+        page.waitForTimeout(310);
+        desktopPage.checkColourOfHeader(colour);
+    }
+
     @Then("verify that colour of {string} main menu sub item is {string}")
     public void checksColourOfSubMenu(String element, String colour) {
         desktopPage.checkColourSubMenuItem(element, colour);
@@ -100,6 +108,17 @@ public class DesktopSteps {
         assertThat(desktopPage.BOTTOM_HEADER).isInViewport();
     }
 
+    @And("bottom part of the header is on the bottom of the page")
+    public void bottomPartOfTheHeaderIsOnTheBottom() {
+        int whereIsBottomHeader = (int) (page.viewportSize().height - desktopPage.BOTTOM_HEADER.boundingBox().y);
+        Assert.assertEquals("Bottom part of the header is not in the right place on a page", 65, whereIsBottomHeader);
+    }
+
+    @And("bottom part of the header is on the top of the page")
+    public void bottomPartOfTheHeaderIsOnTheTop() {
+        Assert.assertEquals("Bottom part of the header is not in the right place on a page", 50, desktopPage.BOTTOM_HEADER.boundingBox().y, 0.0);
+    }
+
     @Given("top part of the header is not visible")
     public void userCantSeeTopPartOfTheHeader() {
         page.waitForTimeout(300);
@@ -117,35 +136,28 @@ public class DesktopSteps {
         page.mouse().wheel(0, deltaY);
     }
 
+    @Then("user scrolls up by {int} pixels")
+    public void userScrollsUpByPixels(int deltaY) {
+        page.mouse().wheel(0, -deltaY);
+    }
 
-//    @When("^user enters \"([^\"]*)\" username$")
-//    public void enterUsername(String username) {
-//        loginPage.enterUsername(username);
-//    }
-//
-//    @When("^user enters \"([^\"]*)\" password$")
-//    public void enterPassword(String password) {
-//        loginPage.enterPassword(password);
-//    }
-//
-//    @When("^user clicks Login button$")
-//    public void clickLogin() {
-//        loginPage.clickLogin();
-//    }
-//
-//    @When("^user clicks on \"([^\"]*)\" icon in main page")
-//    public void clickOnIcon(String iconName) {
-//        loginPage.clickOnIcon(iconName);
-//    }
-//
-//    @Then("verify that user is logged in and navigated to Profile page")
-//    public void verifyProfilePage() {
-//        Assert.assertTrue(loginPage.verifyProfilePage());
-//    }
-//
-//    @Then("^user verifies data as \"([^\"]*)\" in \"([^\"]*)\" row and \"([^\"]*)\" column from \"([^\"]*)\" sheet in \"([^\"]*)\" file")
-//    public void clickOnIcon(String expectedValue, int rowNum, int colNum, String sheetName, String fileName) {
-//        String actualValue = WebActions.getRowColValue(fileName, sheetName, rowNum, colNum);
-//        Assert.assertEquals(expectedValue, actualValue);
-//    }
+    @And("Full Edwards Logo is visible")
+    public void fullEdwardsLogoIsVisible() {
+        assertThat(desktopPage.EDWARDS_LOGO).isInViewport();
+    }
+
+    @And("Full Edwards Logo is not visible")
+    public void fullEdwardsLogoIsNotVisible() {
+        assertThat(desktopPage.EDWARDS_LOGO).not().isInViewport();
+    }
+
+    @And("Favicon Edwards Logo is visible")
+    public void faviconEdwardsLogoIsVisible() {
+        assertThat(desktopPage.FAVICON_EDWARDS_LOGO).isInViewport();
+    }
+
+    @And("Favicon Edwards Logo is not visible")
+    public void faviconEdwardsLogoIsNotVisible() {
+        assertThat(desktopPage.FAVICON_EDWARDS_LOGO).not().isInViewport();
+    }
 }
