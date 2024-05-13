@@ -86,7 +86,7 @@ public class DesktopPage {
         page.locator(itemLocator).click();
     }
 
-    public void checkColour(String itemLocator, String colour) {
+    public void checkBackgroundColour(String itemLocator, String colour) {
         assertThat(page.locator(itemLocator)).hasCSS("background-color", colour);
     }
 

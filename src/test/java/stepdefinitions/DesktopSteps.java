@@ -56,6 +56,18 @@ public class DesktopSteps {
         assertThat(page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).last()).isVisible();
     }
 
+    @And("verify that {string} element is visible")
+    public void verifyItemVisibility(String element) {
+        page.waitForTimeout(200);
+        assertThat((page.locator(element)).first()).isVisible();
+    }
+
+    @And("verify that {string} element is not visible")
+    public void verifyItemVisibilityNot(String element) {
+        page.waitForTimeout(200);
+        assertThat((page.locator(element)).first()).isHidden();
+    }
+
     @And("user clicks on the main menu")
     public void clickOnMainMenu() {
         desktopPage.expandMainMenu();
@@ -67,8 +79,8 @@ public class DesktopSteps {
     }
 
     @And("verify that background colour of {string} element is {string}")
-    public void checksColourOfElement(String element, String colour) {
-        desktopPage.checkColour(element, colour);
+    public void checkBackgroundColourOfElement(String element, String colour) {
+        desktopPage.checkBackgroundColour(element, colour);
     }
 
     @And("verify that background colour of Header is {string}")
@@ -125,6 +137,13 @@ public class DesktopSteps {
         Assert.assertEquals("Bottom part of the header is not in the right place on a page", 50, desktopPage.BOTTOM_HEADER.boundingBox().y, 0.0);
     }
 
+    @And("size of {string} element is {float} by {float} pixels")
+    public void verifySizeOfElement(String element, float width, float height) {
+        page.waitForTimeout(300);
+        Assert.assertEquals("Width of the element is not right", width, page.locator(element).first().boundingBox().width, 0.0);
+        Assert.assertEquals("Height of the element is not right", height, page.locator(element).first().boundingBox().height, 0.0);
+    }
+
     @Given("top part of the header is not visible")
     public void userCantSeeTopPartOfTheHeader() {
         page.waitForTimeout(330);
@@ -175,5 +194,10 @@ public class DesktopSteps {
     @Given("user refreshes the page")
     public void userRefreshesThePage() {
         page.reload();
+    }
+
+    @Then("user hovers over {string} element")
+    public void userHoversOverElement(String element) {
+        page.locator(element).first().hover();
     }
 }
