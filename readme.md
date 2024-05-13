@@ -24,7 +24,7 @@ To run certain scenario/set of scenarios use `Tag`
 
 ## Available emulated devices:
 
-- Windows
+- Desktop
 - Pixel5
 - iPadPro11
 

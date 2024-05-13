@@ -30,7 +30,7 @@ public class DriverFactory {
         }
 
         switch (System.getProperty("device")) {
-            default: //Windows
+            case "Desktop":
                 context = browser.newContext(new Browser.NewContextOptions()
                         .setDeviceScaleFactor(1)
                         .setIsMobile(false)

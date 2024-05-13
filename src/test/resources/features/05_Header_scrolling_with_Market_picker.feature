@@ -5,6 +5,7 @@ Feature: 05 Header scrolling with Market picker
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
+  @Device:Desktop
   Scenario: Header scrolling with Market picker
     Given user refreshes the page
     And top part of the header is visible
@@ -21,7 +22,7 @@ Feature: 05 Header scrolling with Market picker
 
 
   @Device:Pixel5
-  Scenario: Header scrolling with Market picker
+  Scenario: Header scrolling with Market picker on Mobile
     Given user refreshes the page
     And top part of the header is visible
     And bottom part of the header is visible

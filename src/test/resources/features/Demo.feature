@@ -1,6 +1,7 @@
 
 Feature: Just a demo of the framework
 
+  @Device:Desktop
   Scenario: Verify colour of SEMICONDUCTOR menu item
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies

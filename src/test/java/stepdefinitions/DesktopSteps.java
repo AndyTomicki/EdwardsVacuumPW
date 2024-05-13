@@ -16,6 +16,7 @@ public class DesktopSteps {
 
     @Given("^user goes to \"([^\"]*)\"$")
     public void navigateToUrl(String url) {
+        page.waitForTimeout(1000); // because there were problems loading page straight away
         desktopPage.navigateToUrl(url);
     }
 
@@ -47,6 +48,12 @@ public class DesktopSteps {
     @And("user clicks on {string} main menu sub item")
     public void clickOnMainMenuSubItem(String itemText) {
         desktopPage.clickOnMainMenuSubItem(itemText);
+    }
+
+    @And("verify that {string} main menu sub item is visible")
+    public void verifyMainMenuSubItemVisibility(String itemText) {
+        page.waitForTimeout(200);
+        assertThat(page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).last()).isVisible();
     }
 
     @And("user clicks on the main menu")
