@@ -16,8 +16,8 @@ public class Hooks {
 
     @Before
     public void launchBrowser(Scenario scenario) {
-        String browser = "Chrome"; // default values
-        String device = "Windows";
+        String browser = System.getProperty("browser");
+        String device = System.getProperty("device");
 
         for (Object o : Arrays.stream(scenario.getSourceTagNames().toArray()).toArray()) {
             String tag = o.toString();
@@ -27,9 +27,9 @@ public class Hooks {
             }
             if (tag.contains("@Browser:")) {
                 browser = tag.substring(9);
-
             }
         }
+
         System.out.println("Running on browser: " + browser + " under device: " + device);
         driverFactory = new DriverFactory();
         page = driverFactory.initDriver(browser.toLowerCase()); // Passing browser name to launch the browser
@@ -50,6 +50,4 @@ public class Hooks {
             DriverFactory.context.tracing().stop(new Tracing.StopOptions().setPath(Paths.get("target/" + screenshotName + ".zip")));
         }
     }
-
-
 }

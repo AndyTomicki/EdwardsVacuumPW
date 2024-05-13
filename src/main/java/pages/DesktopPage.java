@@ -75,8 +75,9 @@ public class DesktopPage {
 
     public void clickOnMainMenuSubItem(String itemText) {
         page.waitForTimeout(300);
-        page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).first().waitFor(new Locator.WaitForOptions().setTimeout(1000));
-        page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).first().click();
+        Locator linkToClick = page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).last();
+        linkToClick.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        linkToClick.click();
     }
 
     public void clickOnItemByLocator(String itemLocator) {
