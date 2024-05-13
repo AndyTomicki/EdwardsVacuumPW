@@ -4,7 +4,7 @@ Feature: 04 Market picker test
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Desktop @Current
+  @Device:Desktop
   Scenario: Market picker modal shows when there is a page available for selected market
     Given Market Picker is not visible
     Then verify that cookie "preferred-locale" is not set

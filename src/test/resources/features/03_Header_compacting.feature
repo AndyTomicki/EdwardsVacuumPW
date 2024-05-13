@@ -28,7 +28,7 @@ Feature: 03 Header compacting
     And Favicon Edwards Logo is not visible
 
   @Device:Pixel5
-  Scenario: Header compacting on mobile
+  Scenario: [Mobile] Header compacting
     Given top part of the header is visible
     And bottom part of the header is visible
     And bottom part of the header is on the bottom of the page

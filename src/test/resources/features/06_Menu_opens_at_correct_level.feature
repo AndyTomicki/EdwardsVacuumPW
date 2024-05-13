@@ -25,7 +25,7 @@ Feature: 06 Menu opens at correct level
 
 
   @Device:Pixel5
-  Scenario: Semiconductor knowledge active
+  Scenario: [Mobile] Menu opens at the correct level
     Then user clicks on the main menu on mobile
     And user clicks on "Back" main menu sub item
     Then verify that "Innovation Hub" main menu sub item is visible

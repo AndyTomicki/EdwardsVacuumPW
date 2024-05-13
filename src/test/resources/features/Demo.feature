@@ -24,7 +24,7 @@ Feature: Just a demo of the framework
 
 
   @Device:Pixel5
-  Scenario: Click around on Pixel5
+  Scenario: [Mobile] Click around on Pixel5
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
     And user clicks on the main menu on mobile

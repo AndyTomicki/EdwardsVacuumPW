@@ -22,7 +22,7 @@ Feature: 05 Header scrolling with Market picker
 
 
   @Device:Pixel5
-  Scenario: Header scrolling with Market picker on Mobile
+  Scenario: [Mobile] Header scrolling with Market picker
     Given user refreshes the page
     And top part of the header is visible
     And bottom part of the header is visible
