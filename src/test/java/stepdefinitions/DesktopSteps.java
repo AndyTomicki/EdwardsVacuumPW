@@ -8,6 +8,9 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.DesktopPage;
 
+import java.util.Objects;
+import java.util.regex.Pattern;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static factory.DriverFactory.page;
 
@@ -188,7 +191,12 @@ public class DesktopSteps {
 
     @And("Market Picker is visible")
     public void marketPickerIsVisible() {
-        assertThat(desktopPage.MARKET_PICKER).isInViewport();
+        assertThat(desktopPage.MARKET_PICKER_PROMPT).isInViewport();
+    }
+
+    @And("Market Picker is not visible")
+    public void marketPickerIsNotVisible() {
+        assertThat(desktopPage.MARKET_PICKER_PROMPT).not().isInViewport();
     }
 
     @Given("user refreshes the page")
@@ -199,5 +207,45 @@ public class DesktopSteps {
     @Then("user hovers over {string} element")
     public void userHoversOverElement(String element) {
         page.locator(element).first().hover();
+    }
+
+    @Then("user selects {string} as a market")
+    public void userSelectsAsAMarket(String market) {
+        desktopPage.LOCATION_MENU_BUTTON.click();
+        page.waitForTimeout(300);
+        (page.getByText(market).and(page.locator("*:visible"))).first().click();
+    }
+
+    @And("user selects {string} as a preferred market")
+    public void userSelectsAsAPreferredMarket(String market) {
+        desktopPage.SELECT_YOUR_REGION.click();
+        page.waitForTimeout(300);
+        (page.getByText(market).and(page.locator("*:visible"))).first().click();
+    }
+
+    @Then("verify that cookie {string} is stored as {string}")
+    public void cookieShouldBeStored(String cookieName, String cookieValue) {
+        for (int i = 0; i < page.context().cookies().size(); i++) {
+            if (Objects.equals(cookieName, page.context().cookies().get(i).name))
+                Assert.assertEquals("Cookie value mismatch", cookieValue, page.context().cookies().get(i).value);
+        }
+    }
+
+    @Then("verify that cookie {string} is not set")
+    public void cookieShouldBeStored(String cookieName) {
+        for (int i = 0; i < page.context().cookies().size(); i++) {
+            if (Objects.equals(cookieName, page.context().cookies().get(i).name))
+                Assert.fail("Cookie is set as '" + page.context().cookies().get(i).value + "' but should not be set");
+        }
+    }
+
+    @Then("user clicks on GO TO PAGE button")
+    public void userClicksOnGOTOPAGEButton() {
+        desktopPage.GO_TO_PAGE_BUTTON.click();
+    }
+
+    @Then("page url should contain {string}")
+    public void pageUrlShouldContain(String partialUrl) {
+        assertThat(page).hasURL(Pattern.compile(".*/"+partialUrl+"*"));
     }
 }

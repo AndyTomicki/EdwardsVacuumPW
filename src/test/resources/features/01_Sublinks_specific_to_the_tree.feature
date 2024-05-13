@@ -5,7 +5,7 @@ Feature: 01 Sublinks specific to the tree
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/semiconductor"
     Then user accepts cookies
 
-  @Device:Desktop @Current
+  @Device:Desktop
   Scenario: Sublinks specific to the tree
   - rgb(196, 38, 46) - highlighted red
   - //i[@class='fa-kit fa-header-cart'] - little shopping cart icon

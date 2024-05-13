@@ -12,7 +12,7 @@ public class DesktopPage {
    // private final Locator COOKIES_MODAL;
     private final Locator LOCATION_BAR_CLOSE_BUTTON;
     private final Locator MAIN_MENU_BUTTON;
-    private final Locator LOCATION_MENU_BUTTON;
+    public final Locator LOCATION_MENU_BUTTON;
     public final Locator SEARCH_INPUT;
     public final Locator HEADER;
     public final Locator HEADER_SCROLLED;
@@ -20,7 +20,10 @@ public class DesktopPage {
     public final Locator BOTTOM_HEADER;
     public final Locator EDWARDS_LOGO;
     public final Locator FAVICON_EDWARDS_LOGO;
-    public final Locator MARKET_PICKER;
+    public final Locator MARKET_PICKER_PROMPT;
+    public final Locator MARKET_PICKER_PROMPT_MODAL;
+    public final Locator SELECT_YOUR_REGION;
+    public final Locator GO_TO_PAGE_BUTTON;
 
 
     public DesktopPage(Page page) {
@@ -31,7 +34,7 @@ public class DesktopPage {
    //     this.COOKIES_MODAL = page.locator("//div[@aria-label='This website uses cookies']");
         this.LOCATION_BAR_CLOSE_BUTTON = page.locator("geo-location-close");
         this.MAIN_MENU_BUTTON = page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn main-menu']");
-        this.LOCATION_MENU_BUTTON = VISIBLE.and(page.locator("//button[@class='cmp-header-twentytwentyfour__list-btn']")).first();
+        this.LOCATION_MENU_BUTTON = VISIBLE.and(page.locator("//*[@data-icon='globe']/../..")).first();
         this.SEARCH_INPUT = page.locator("//div[@class='cmp-header__search-container']");
         this.HEADER = page.locator("//header[@class='cmp-header-twentytwentyfour']");
         this.HEADER_SCROLLED = page.locator("//header[@class='cmp-header-twentytwentyfour cmp-header-twentytwentyfour--scrolled']");
@@ -39,8 +42,10 @@ public class DesktopPage {
         this.BOTTOM_HEADER = page.locator("//div[@class='cmp-header-twentytwentyfour__container__bottom']");
         this.EDWARDS_LOGO = page.locator("//div[@class='edwards-logo']").first();
         this.FAVICON_EDWARDS_LOGO = page.locator("//div[@class='cmp-header-twentytwentyfour__favicon']");
-        this.MARKET_PICKER = page.locator("//div[@class='cmp-market-picker-prompt']");
-
+        this.MARKET_PICKER_PROMPT = page.locator("//div[@class='cmp-market-picker-prompt']");
+        this.MARKET_PICKER_PROMPT_MODAL = page.locator("//div[@class='cmp-market-picker-prompt__modal']");
+        this.SELECT_YOUR_REGION = page.locator("//button[@class='geo-location--select-button']");
+        this.GO_TO_PAGE_BUTTON = page.locator("//button[@class='confirm-redirect']").first();
     }
 
     public void navigateToUrl(String url) {
@@ -81,8 +86,6 @@ public class DesktopPage {
     }
 
     public void clickOnItemByLocator(String itemLocator) {
-//        System.out.println("COOKIES -------------------------------------------------");
-//        System.out.println(page.context().cookies().get(1).name);
         page.locator(itemLocator).click();
     }
 
