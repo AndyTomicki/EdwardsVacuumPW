@@ -7,7 +7,7 @@ Feature: 04 Market picker test
   @Device:Desktop @Current
   Scenario: Market picker modal shows when there is a page available for selected market
     Given Market Picker is not visible
-    And verify that cookie "preferred-locale" is not set
+    Then verify that cookie "preferred-locale" is not set
     When user refreshes the page
     Then Market Picker is visible
     And user selects "Česká republika" as a preferred market

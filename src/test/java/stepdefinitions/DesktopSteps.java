@@ -225,10 +225,14 @@ public class DesktopSteps {
 
     @Then("verify that cookie {string} is stored as {string}")
     public void cookieShouldBeStored(String cookieName, String cookieValue) {
+        boolean cookieIsSet = false;
         for (int i = 0; i < page.context().cookies().size(); i++) {
-            if (Objects.equals(cookieName, page.context().cookies().get(i).name))
+            if (Objects.equals(cookieName, page.context().cookies().get(i).name)){
+                cookieIsSet = true;
                 Assert.assertEquals("Cookie value mismatch", cookieValue, page.context().cookies().get(i).value);
+            }
         }
+        Assert.assertTrue("Cookie '"+cookieName+"' has not been set", cookieIsSet);
     }
 
     @Then("verify that cookie {string} is not set")
