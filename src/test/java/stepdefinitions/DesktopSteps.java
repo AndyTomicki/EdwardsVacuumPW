@@ -256,8 +256,13 @@ public class DesktopSteps {
 
     @Given("after clicking {string} the response status should be {int} with video file {string}")
     public void userClicksOnPlayButton(String elementToClick, int expectedResponseStatusCode, String fileNameToLoad) {
-        page.waitForTimeout(600);
-        Response response = page.waitForResponse(Pattern.compile(fileNameToLoad), () -> page.getByText(elementToClick).first().click(new Locator.ClickOptions().setForce(true)));
-        Assert.assertEquals("HTTP response status match", expectedResponseStatusCode, response.status());
+        page.waitForTimeout(500);
+        try {
+            Response response = page.waitForResponse(Pattern.compile(fileNameToLoad), () -> page.getByText(elementToClick).first().click(new Locator.ClickOptions().setForce(true)));
+            Assert.assertEquals("HTTP response status match", expectedResponseStatusCode, response.status());
+        } catch (Exception e) {
+            Assert.fail("Failed looking for '"+fileNameToLoad+"' in the response");
+            throw new RuntimeException(e);
+        }
     }
 }

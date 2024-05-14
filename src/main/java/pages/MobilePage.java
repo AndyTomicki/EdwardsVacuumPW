@@ -12,7 +12,7 @@ public class MobilePage {
     public MobilePage(Page page) {
         this.page = page;
         this.MOBILE_MAIN_MENU_BUTTON = page.locator("//div[@class='cmp-header-twentytwentyfour__mobile-navigation cmp-header-twentytwentyfour__toggle cmp-header-twentytwentyfour__toggle--close']");
-        this.MOBILE_VIDEO_CLOSE_BUTTON = page.locator("//*[@class='svg-inline--fa fa-x internal-video-player__close']").first();
+        this.MOBILE_VIDEO_CLOSE_BUTTON = page.locator("*:visible").and(page.locator("//*[@class='svg-inline--fa fa-x internal-video-player__close']").first());
     }
 
     public void expandMainMenu() {
