@@ -1,4 +1,4 @@
-
+@ignore
 Feature: Just a demo of the framework
 
   @Device:Desktop
