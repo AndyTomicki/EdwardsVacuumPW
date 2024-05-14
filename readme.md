@@ -7,18 +7,16 @@ This readme.md is still under construction
 
 # Edwards Vacuum Regression Suite
 
-
+---
 ## Running Tests
 
----
-
-To run all of the tests, run the following command
+To run all the tests, run the following command
 
 ```bash
   mvn test
 ```
----
-To run certain scenario/set of scenarios use `Tag`
+
+To run certain scenario/set of scenarios use `Cucumber tag` - like `@Current` above `Scenario` or `Feature` keyword 
 
 ```cucumber
   @Device:iPadPro11 @Current
@@ -30,7 +28,9 @@ To run certain scenario/set of scenarios use `Tag`
   mvn test -Dcucumber.filter.tags=@Current
 ```
 ---
- Suite is ran **_headlessly_** by default. To override use `-Dheadless=false`  
+## Headless mode
+
+ Suite is ran **_headlessly_** by default. To override use parameter `-Dheadless=false`  
 
 ```bash
   mvn test -Dcucumber.filter.tags=@Current -Dheadless=false
@@ -42,7 +42,7 @@ To run certain scenario/set of scenarios use `Tag`
 - Pixel5
 - iPadPro11
 
-use: `@Device:DeviceName` tag above `Feature` or a `Scenario` name
+By default suite is emulating desktop device. To override use: `@Device:DeviceName` tag above `Feature` or a `Scenario` name
 
 Example:
 ```Cucumber 
@@ -50,15 +50,19 @@ Example:
   Scenario: Verify User is able to perform actions on Web Elements in Video Playlist page on Pixel5
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
-```    
+```
+
+Devices can be added to the framework in [src/main/java/factory/DriverFactory.java](src/main/java/factory/DriverFactory.java)  
+A list of devices can be found at [here](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json)
+
 ---
-## Browsers support
+## Browser support and emulation
 
 - Chrome
 - Firefox
-- WebKit
+- WebKit (Safari engine)
 
-use: `@Browser:BrowserName` tag above `Feature` or a `Scenario` name
+By default, suite is running `Chrome`. To override use: `@Browser:BrowserName` tag above `Feature` or a `Scenario` name
 
 Example:
 ```Cucumber 
