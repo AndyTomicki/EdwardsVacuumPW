@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Response;
 import factory.DriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -7,7 +9,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.DesktopPage;
-
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -227,12 +228,12 @@ public class DesktopSteps {
     public void cookieShouldBeStored(String cookieName, String cookieValue) {
         boolean cookieIsSet = false;
         for (int i = 0; i < page.context().cookies().size(); i++) {
-            if (Objects.equals(cookieName, page.context().cookies().get(i).name)){
+            if (Objects.equals(cookieName, page.context().cookies().get(i).name)) {
                 cookieIsSet = true;
                 Assert.assertEquals("Cookie value mismatch", cookieValue, page.context().cookies().get(i).value);
             }
         }
-        Assert.assertTrue("Cookie '"+cookieName+"' has not been set", cookieIsSet);
+        Assert.assertTrue("Cookie '" + cookieName + "' has not been set", cookieIsSet);
     }
 
     @Then("verify that cookie {string} is not set")
@@ -250,6 +251,13 @@ public class DesktopSteps {
 
     @Then("page url should contain {string}")
     public void pageUrlShouldContain(String partialUrl) {
-        assertThat(page).hasURL(Pattern.compile(".*/"+partialUrl+"*"));
+        assertThat(page).hasURL(Pattern.compile(".*/" + partialUrl + "*"));
+    }
+
+    @Given("after clicking {string} the response status should be {int} with video file {string}")
+    public void userClicksOnPlayButton(String elementToClick, int expectedResponseStatusCode, String fileNameToLoad) {
+        page.waitForTimeout(600);
+        Response response = page.waitForResponse(Pattern.compile(fileNameToLoad), () -> page.getByText(elementToClick).first().click(new Locator.ClickOptions().setForce(true)));
+        Assert.assertEquals("HTTP response status match", expectedResponseStatusCode, response.status());
     }
 }
