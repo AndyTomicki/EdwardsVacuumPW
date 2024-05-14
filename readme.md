@@ -62,7 +62,7 @@ A list of devices can be found [here](https://github.com/microsoft/playwright/bl
 - Firefox
 - WebKit (Safari engine)
 
-By default, suite is running `Chrome`. To override use: `@Browser:BrowserName` tag above `Feature` or a `Scenario` name
+By default, suite is running `Chrome`. To override use: `@Browser:BrowserName` tag above `Feature` or a `Scenario` keyword
 
 Example:
 ```Cucumber 
