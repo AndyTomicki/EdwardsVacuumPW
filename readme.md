@@ -42,7 +42,7 @@ To run certain scenario/set of scenarios use `Cucumber tag` - like `@Current` ab
 - Pixel5
 - iPadPro11
 
-By default suite is emulating desktop device. To override use: `@Device:DeviceName` tag above `Feature` or a `Scenario` name
+By default suite is emulated on desktop device. To override use: `@Device:DeviceName` tag above `Feature` or a `Scenario` name
 
 Example:
 ```Cucumber 
@@ -53,7 +53,7 @@ Example:
 ```
 
 Devices can be added to the framework in [src/main/java/factory/DriverFactory.java](src/main/java/factory/DriverFactory.java)  
-A list of devices can be found at [here](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json)
+A list of devices can be found [here](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json)
 
 ---
 ## Browser support and emulation
