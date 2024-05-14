@@ -1,15 +1,23 @@
+
 This readme.md is still under construction
+
+---
+
+![](logo.png)
+
 # Edwards Vacuum Regression Suite
 
 
 ## Running Tests
 
-To run tests, run the following command
+---
+
+To run all of the tests, run the following command
 
 ```bash
   mvn test
 ```
-
+---
 To run certain scenario/set of scenarios use `Tag`
 
 ```cucumber
@@ -21,7 +29,13 @@ To run certain scenario/set of scenarios use `Tag`
 ```bash
   mvn test -Dcucumber.filter.tags=@Current
 ```
+---
+ Suite is ran **_headlessly_** by default. To override use `-Dheadless=false`  
 
+```bash
+  mvn test -Dcucumber.filter.tags=@Current -Dheadless=false
+```
+---
 ## Available emulated devices:
 
 - Desktop
@@ -36,9 +50,8 @@ Example:
   Scenario: Verify User is able to perform actions on Web Elements in Video Playlist page on Pixel5
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
-    Then user clicks on element with text "MENU"
 ```    
-
+---
 ## Browsers support
 
 - Chrome
@@ -53,7 +66,6 @@ Example:
   Scenario: Verify User is able to perform actions on Web Elements in Video Playlist page on Pixel5
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
-    Then user clicks on element with text "MENU"
 ```    
 
 
