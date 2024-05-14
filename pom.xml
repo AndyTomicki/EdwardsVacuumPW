@@ -98,6 +98,7 @@
                     <systemPropertyVariables>
                         <browser>Chrome</browser>
                         <device>Desktop</device>
+                        <headless>false</headless>
                     </systemPropertyVariables>
                     <skipTests>false</skipTests>
                 </configuration>

@@ -13,7 +13,7 @@ public class DriverFactory {
     //Launches Browser as set by user in config file
     public Page initDriver(String browserName) {
         BrowserType browserType = null;
-        boolean headless = false;
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browserName) {
             case "firefox":
                 browserType = Playwright.create().firefox();
