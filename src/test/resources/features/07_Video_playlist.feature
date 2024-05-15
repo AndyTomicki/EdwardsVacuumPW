@@ -11,7 +11,8 @@ Feature: 07 Video playlist [WIP]
     Then verify that ".cmp-video-playlist__card__info__duration--total" is below ".cmp-video-playlist__card__info__title"
     Then verify that ".cmp-video-playlist__card__info__title" is above ".cmp-video-playlist__card__info__bottom"
     Then verify that ".cmp-video-playlist__video" is on the left of ".cmp-video-playlist__list"
-    Then verify that ".cmp-video-playlist__card__info__icons" is on the right of ".cmp-video-playlist__card__info__duration--current"
+    And verify that ".cmp-video-playlist__card__info__icons" is on the right of ".cmp-video-playlist__card__info__duration--current"
+
 
   @Device:Desktop
   Scenario: Videos loading/not loading to the player
@@ -22,7 +23,7 @@ Feature: 07 Video playlist [WIP]
 
 
   @Device:Pixel5
-  Scenario: [Mobile] Video playlist
-    And after clicking "Video Title - 1" the response status should be 404 with video file "Edwards-E2S-1-0x480-1800k.mp4"
-    Then user closes video
+  Scenario: [Mobile] Videos loading/not loading to the player
     Then after clicking "Video Title - 2" the response status should be 206 with video file "Edwards-E2S-2-0x480-1800k.mp4"
+    Then user closes video
+    And after clicking "Video Title - 1" the response status should be 404 with video file "Edwards-E2S-1-0x480-1800k.mp4"
