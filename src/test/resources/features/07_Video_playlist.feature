@@ -5,7 +5,7 @@ Feature: 07 Video playlist [WIP]
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Desktop  @Current
+  @Device:Desktop @Current
   Scenario: Video playlist elements positions and visibility
     Then after clicking "Video Title - 2" the response status should be 206 with video file "Edwards-E2S-2-0x480-1800k.mp4"
     Then verify that ".cmp-video-playlist__card__info__duration--total" is below ".cmp-video-playlist__card__info__title"
@@ -24,6 +24,10 @@ Feature: 07 Video playlist [WIP]
 
   @Device:Desktop
   Scenario: Videos loading/not loading to the player
+    - rgb(213, 215, 216) - light grey
+    - rgb(45, 54, 58)    - dark grey
+    Given user hovers over "//div[@data-videotitle='Video Title - 2']" element
+    And verify that background colour of "//div[@data-videotitle='Video Title - 2']" element is "rgb(213, 215, 216)"
     Then after clicking "Video Title - 2" the response status should be 206 with video file "Edwards-E2S-2-0x480-1800k.mp4"
     And verify that background colour of "//div[@data-videotitle='Video Title - 2']" element is "rgb(45, 54, 58)"
     And after clicking "Video Title - 1" the response status should be 404 with video file "Edwards-E2S-1-0x480-1800k.mp4"
