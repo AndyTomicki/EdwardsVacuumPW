@@ -70,6 +70,11 @@ public class DesktopSteps {
         assertThat((page.locator(element)).first()).isInViewport();
     }
 
+    @And("verify that {string} element is not currently visible")
+    public void verifyItemCurrentVisibilityNot(String element) {
+        assertThat((page.locator(element)).first()).not().isInViewport();
+    }
+
     @And("verify that {string} element is not visible")
     public void verifyItemVisibilityNot(String element) {
         page.waitForTimeout(200);
