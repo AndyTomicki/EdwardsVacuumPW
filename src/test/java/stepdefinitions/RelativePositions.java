@@ -14,7 +14,7 @@ public class RelativePositions {
         Locator secondElement = page.locator(secondElementLocator).first();
         assertThat(firstElement).isInViewport();
         assertThat(secondElement).isInViewport();
-        Assert.assertTrue("'"+firstElementLocator+"' should be above of '"+secondElementLocator+"'", firstElement.boundingBox().y+firstElement.boundingBox().height < secondElement.boundingBox().y);
+        Assert.assertTrue("'"+firstElementLocator+"' should be above '"+secondElementLocator+"'", firstElement.boundingBox().y+firstElement.boundingBox().height < secondElement.boundingBox().y);
     }
 
     @Then("verify that {string} is below {string}")
@@ -23,7 +23,7 @@ public class RelativePositions {
         Locator secondElement = page.locator(secondElementLocator).first();
         assertThat(firstElement).isInViewport();
         assertThat(secondElement).isInViewport();
-        Assert.assertTrue("'"+firstElementLocator+"' should be below of '"+secondElementLocator+"'", firstElement.boundingBox().y > secondElement.boundingBox().y+secondElement.boundingBox().height);
+        Assert.assertTrue("'"+firstElementLocator+"' should be below '"+secondElementLocator+"'", firstElement.boundingBox().y > secondElement.boundingBox().y+secondElement.boundingBox().height);
     }
 
     @Then("verify that {string} is on the left of {string}")

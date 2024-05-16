@@ -39,7 +39,7 @@ public class DesktopSteps {
         desktopPage.clickOnItemWithText(itemText);
     }
 
-    @And("^user clicks on element by locator \"([^\"]*)\"$")
+    @And("user clicks on {string} element")
     public void clicksOnButtonElementByLocator(String itemLocator) {
         desktopPage.clickOnItemByLocator(itemLocator);
     }
@@ -62,8 +62,12 @@ public class DesktopSteps {
 
     @And("verify that {string} element is visible")
     public void verifyItemVisibility(String element) {
-        page.waitForTimeout(200);
         assertThat((page.locator(element)).first()).isVisible();
+    }
+
+    @And("verify that {string} element is currently visible")
+    public void verifyItemCurrentVisibility(String element) {
+        assertThat((page.locator(element)).first()).isInViewport();
     }
 
     @And("verify that {string} element is not visible")
@@ -84,6 +88,7 @@ public class DesktopSteps {
 
     @And("verify that background colour of {string} element is {string}")
     public void checkBackgroundColourOfElement(String element, String colour) {
+        page.waitForTimeout(150);
         desktopPage.checkBackgroundColour(element, colour);
     }
 
@@ -168,6 +173,11 @@ public class DesktopSteps {
     @Then("user scrolls up by {int} pixels")
     public void userScrollsUpByPixels(int deltaY) {
         page.mouse().wheel(0, -deltaY);
+    }
+
+    @Then("user scrolls to {string} element")
+    public void userScrollsUpByPixels(String element) {
+        page.locator(element).first().scrollIntoViewIfNeeded();
     }
 
     @And("Full Edwards Logo is visible")

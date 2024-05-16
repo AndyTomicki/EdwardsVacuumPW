@@ -86,11 +86,11 @@ public class DesktopPage {
     }
 
     public void clickOnItemByLocator(String itemLocator) {
-        page.locator(itemLocator).click();
+        page.locator(itemLocator).first().click();
     }
 
     public void checkBackgroundColour(String itemLocator, String colour) {
-        assertThat(page.locator(itemLocator)).hasCSS("background-color", colour);
+        assertThat(page.locator(itemLocator).first()).hasCSS("background-color", colour);
     }
 
     public void checkColourOfHeader(String colour) {
