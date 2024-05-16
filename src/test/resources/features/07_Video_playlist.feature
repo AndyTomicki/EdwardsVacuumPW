@@ -1,11 +1,11 @@
-
+@Current
 Feature: 07 Video playlist [WIP]
 
   Background:
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Desktop @Current
+  @Device:Desktop
   Scenario: Video playlist elements positions and visibility
     Then after clicking "Video Title - 2" the response status should be 206 with video file "Edwards-E2S-2-0x480-1800k.mp4"
     Then verify that ".cmp-video-playlist__card__info__duration--total" is below ".cmp-video-playlist__card__info__title"
