@@ -60,7 +60,7 @@ public class DesktopSteps {
         assertThat(page.locator("p:visible").and(page.locator("//p[.='" + itemText + "']")).last()).isVisible();
     }
 
-    @And("verify that {string} element is visible")
+    @And("verify that {string} element is loaded in the page")
     public void verifyItemVisibility(String element) {
         assertThat((page.locator(element)).first()).isVisible();
     }
