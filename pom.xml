@@ -69,14 +69,6 @@
             <version>5.2.3</version>
         </dependency>
 
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.apis/google-api-services-gmail &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.google.apis</groupId>-->
-        <!--            <artifactId>google-api-services-gmail</artifactId>-->
-        <!--            <version>v1-rev110-1.25.0</version>-->
-        <!--        </dependency>-->
-
-
     </dependencies>
 
     <build>

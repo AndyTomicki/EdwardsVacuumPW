@@ -42,7 +42,7 @@ public class DriverFactory {
             case "Pixel5":
                 context = browser.newContext(new Browser.NewContextOptions()
                         .setDeviceScaleFactor(2.75)
-                        .setIsMobile(true)
+                     //   .setIsMobile(true)
                         .setHasTouch(true)
                         .setScreenSize(393, 851)
                         .setViewportSize(393, 727)
@@ -52,7 +52,7 @@ public class DriverFactory {
             case "iPadPro11":
                 context = browser.newContext(new Browser.NewContextOptions()
                         .setDeviceScaleFactor(2)
-                        .setIsMobile(true)
+                      //  .setIsMobile(true)
                         .setHasTouch(true)
                         .setViewportSize(834, 1194)
                         .setUserAgent("Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
