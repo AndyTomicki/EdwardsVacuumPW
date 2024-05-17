@@ -3,17 +3,22 @@ package stepdefinitions;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Response;
 import factory.DriverFactory;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.DesktopPage;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static factory.DriverFactory.page;
+import static org.apache.commons.collections4.IteratorUtils.forEach;
 
 public class DesktopSteps {
     DesktopPage desktopPage = new DesktopPage(DriverFactory.getPage());
@@ -276,8 +281,16 @@ public class DesktopSteps {
             Response response = page.waitForResponse(Pattern.compile(fileNameToLoad), () -> page.getByText(elementToClick).first().click(new Locator.ClickOptions().setForce(true)));
             Assert.assertEquals("HTTP response status match", expectedResponseStatusCode, response.status());
         } catch (Exception e) {
-            Assert.fail("Failed looking for '"+fileNameToLoad+"' in the response");
+            Assert.fail("Failed looking for '" + fileNameToLoad + "' in the response");
             throw new RuntimeException(e);
+        }
+    }
+
+    @Then("verify Upper Case and Lower Case matching for {string} element")
+    public void verifyUpperCaseAndLowerCaseMatching(String element, DataTable texts) {
+        List<Map<String, String>> data = texts.asMaps();
+        for (Map<String, String> listOfTexts : data) {
+            Assert.assertTrue("Element: '"+element+"' should contain exact text of '"+listOfTexts.get("Exact text to be present")+"', but what was found is: \n"+page.locator(element).innerText(), page.locator(element).innerText().contains(listOfTexts.get("Exact text to be present")));
         }
     }
 }
