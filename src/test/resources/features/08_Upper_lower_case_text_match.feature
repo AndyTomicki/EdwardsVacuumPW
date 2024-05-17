@@ -5,7 +5,7 @@ Feature: 08 Upper / lower text match
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
 
-  @Device:Desktop @Current
+  @Device:Desktop
   Scenario: Verify Upper Case and Lower Case matching
     Then verify Upper Case and Lower Case matching for ".cmp-header-twentytwentyfour__container__bottom" element
       | Exact text to be present |
