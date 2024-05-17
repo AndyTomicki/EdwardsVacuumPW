@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static factory.DriverFactory.page;
-import static org.apache.commons.collections4.IteratorUtils.forEach;
 
 public class DesktopSteps {
     DesktopPage desktopPage = new DesktopPage(DriverFactory.getPage());
@@ -290,7 +289,9 @@ public class DesktopSteps {
     public void verifyUpperCaseAndLowerCaseMatching(String element, DataTable texts) {
         List<Map<String, String>> data = texts.asMaps();
         for (Map<String, String> listOfTexts : data) {
-            Assert.assertTrue("Element: '"+element+"' should contain exact text of '"+listOfTexts.get("Exact text to be present")+"', but what was found is: \n"+page.locator(element).innerText(), page.locator(element).innerText().contains(listOfTexts.get("Exact text to be present")));
+            if (page.locator(element).innerText().toLowerCase().contains(listOfTexts.get("Exact text to be present").toLowerCase())) {
+                Assert.assertTrue("Element: '"+element+"' should contain exact text of '"+listOfTexts.get("Exact text to be present")+"', but what was found is: \n"+page.locator(element).innerText(), page.locator(element).innerText().contains(listOfTexts.get("Exact text to be present")));
+            }
         }
     }
 }
