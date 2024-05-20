@@ -58,6 +58,14 @@ public class DriverFactory {
                         .setUserAgent("Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
                 );
                 break;
+            case "iPhone14ProMax":
+                context = browser.newContext(new Browser.NewContextOptions()
+                        .setDeviceScaleFactor(3)
+                        .setHasTouch(true)
+                        .setViewportSize(430, 740)
+                        .setUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1")
+                );
+                break;
         }
 
         if (browserType == null) throw new IllegalArgumentException("Could not Launch Browser for type" + browserType);

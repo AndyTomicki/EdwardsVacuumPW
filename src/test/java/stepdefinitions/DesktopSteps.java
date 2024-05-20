@@ -24,7 +24,7 @@ public class DesktopSteps {
 
     @Given("^user goes to \"([^\"]*)\"$")
     public void navigateToUrl(String url) {
-        page.waitForTimeout(1000); // because there were problems loading page straight away
+        page.waitForTimeout(400); // because there were problems loading page straight away
         desktopPage.navigateToUrl(url);
     }
 
@@ -288,9 +288,9 @@ public class DesktopSteps {
     @Then("verify Upper Case and Lower Case matching for {string} element")
     public void verifyUpperCaseAndLowerCaseMatching(String element, DataTable texts) {
         List<Map<String, String>> data = texts.asMaps();
-        for (Map<String, String> listOfTexts : data) {
-            if (page.locator(element).innerText().toLowerCase().contains(listOfTexts.get("Exact text to be present").toLowerCase())) {
-                Assert.assertTrue("Element: '"+element+"' should contain exact text of '"+listOfTexts.get("Exact text to be present")+"', but what was found is: \n"+page.locator(element).innerText(), page.locator(element).innerText().contains(listOfTexts.get("Exact text to be present")));
+        for (Map<String, String> dictionary : data) {
+            if (page.locator(element).innerText().toLowerCase().contains(dictionary.get("Exact text to be present").toLowerCase())) {
+                Assert.assertTrue("Element: '"+element+"' should contain exact text of '"+dictionary.get("Exact text to be present")+"', but what was found is: \n"+page.locator(element).innerText(), page.locator(element).innerText().contains(dictionary.get("Exact text to be present")));
             }
         }
     }

@@ -1,9 +1,10 @@
-
-Feature: 07 Video playlist [WIP]
+@issue:ACPO-16920
+Feature: Video playlist
 
   Background:
     When user goes to "https://www-uat.edwardsvacuum.com/en-uk/testing-video-playlist"
     Then user accepts cookies
+
 
   @Device:Desktop
   Scenario: Video playlist elements positions and visibility
